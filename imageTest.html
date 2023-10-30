@@ -1,25 +1,28 @@
 <!DOCTYPE html>
 <html>
+  <head> </head>
   <body>
-    <script>
-      const hardworker = new Worker("hardworker.js");
-      const imageworker = new Worker("imageworker.js");
-      const do10secworker = new Worker("do10secworker.js");
-    </script>
-    <script>
-      const hardworkerClick = () => hardworker.postMessage("im hard worker");
-      const imageworkerClick = () => imageworker.postMessage("im image worker");
-      const do10secworkerClick = () =>
-        do10secworker.postMessage("im image worker");
-    </script>
     <div>
       <h1>hello world</h1>
       <div>
-        <button onclick="hardworkerClick()">hardworker work!</button>
-        <button onclick="imageworkerClick()">imageworker work!</button>
-        <button onclick="do10secworkerClick()">do10secworker work!</button>
-        <button onclick="getImage()">worker03 work!</button>
+        <div id="1">1</div>
+        <div id="2">2</div>
+        <div id="3">3</div>
       </div>
     </div>
+    <script>
+      const imageworker01 = new Worker("imageworker01.js");
+      const imageworker02 = new Worker("imageworker02.js");
+      const imageworker03 = new Worker("imageworker03.js");
+    </script>
+    <script>
+      console.log(document);
+      document.getElementById(
+        "1"
+      ).style.backgroundImage = `url(${imageworker01.postMessage("1")})`;
+      console.log(document.getElementById("1"));
+      imageworker02.postMessage("2");
+      imageworker03.postMessage("3");
+    </script>
   </body>
 </html>

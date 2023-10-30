@@ -3,7 +3,7 @@ onmessage = function (event) {
   console.log("worker received message:", event.data);
 
   const getImage = async () => {
-    const image = await fetch("https://dummyimage.com/2000x2000/000/fff.jpg");
+    const image = await fetch("https://dummyimage.com/2000x2000/000/eee.jpg");
     console.log(image.url);
   };
 
