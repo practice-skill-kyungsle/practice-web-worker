@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      const hardworker = new Worker("hardworker.js");
+      const imageworker = new Worker("imageworker.js");
+      const do10secworker = new Worker("do10secworker.js");
+    </script>
+    <script>
+      const hardworkerClick = () => hardworker.postMessage("im hard worker");
+      const imageworkerClick = () => imageworker.postMessage("im image worker");
+      const do10secworkerClick = () =>
+        do10secworker.postMessage("im image worker");
+    </script>
+    <div>
+      <h1>hello world</h1>
+      <div>
+        <button onclick="hardworkerClick()">hardworker work!</button>
+        <button onclick="imageworkerClick()">imageworker work!</button>
+        <button onclick="do10secworkerClick()">do10secworker work!</button>
+        <button onclick="getImage()">worker03 work!</button>
+      </div>
+    </div>
+  </body>
+</html>
