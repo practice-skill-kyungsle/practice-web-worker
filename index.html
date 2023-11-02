@@ -1,24 +1,54 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <style>
+      @keyframes move {
+        0% {
+          left: 0;
+        }
+        25% {
+          left: 1000px;
+        }
+        50% {
+          left: 0;
+        }
+        75% {
+          left: 1000px;
+        }
+        100% {
+          left: 0;
+        }
+      }
+
+      #mySquare {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        background-color: lime;
+        animation: move 15s linear;
+      }
+    </style>
+  </head>
   <body>
     <script>
-      const hardworker = new Worker("hardworker.js");
-      const imageworker = new Worker("imageworker01.js");
-      const do10secworker = new Worker("do10secworker.js");
+      const eatManyMemory = () => {
+        const array = [];
+
+        for (let i = 0; i < 25000; i++) {
+          array.push(new Array(25000));
+        }
+      };
     </script>
     <script>
-      const hardworkerClick = () => hardworker.postMessage("im hard worker");
-      const imageworkerClick = () => imageworker.postMessage("im image worker");
-      const do10secworkerClick = () =>
-        do10secworker.postMessage("im image worker");
+      const eatMemoryWorker = new Worker("eatMemoryWorker.js");
+      const eatMaxMemory = () => eatMemoryWorker.postMessage("eat!!!");
     </script>
     <div>
-      <h1>hello world</h1>
+      <h1>practice worker thread move</h1>
       <div>
-        <button onclick="hardworkerClick()">hardworker work!</button>
-        <button onclick="imageworkerClick()">imageworker work!</button>
-        <button onclick="do10secworkerClick()">do10secworker work!</button>
-        <button onclick="getImage()">worker03 work!</button>
+        <div id="mySquare"></div>
+        <button onclick="eatManyMemory()">main thread work!</button>
+        <button onclick="eatMaxMemory()">worker thread work</button>
       </div>
     </div>
   </body>
